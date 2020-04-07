@@ -1,0 +1,19 @@
+def contentSpecs = copySpec {
+   exclude ('*.log')
+   from 'src'
+}
+
+task copyImages (type: Copy){
+   with contentSpecs
+   into 'dest'
+}
+
+task copyConfig (type: Copy){
+
+   include 'web.xml'
+   from 'src'
+   into 'config'
+   expand (
+      [resourceRefName: 'jdbc/JacketDB']
+   )
+}
